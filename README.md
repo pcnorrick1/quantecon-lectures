@@ -1,6 +1,6 @@
 # QuantEcon Lectures - My Workthrough
 
-This repository is my personal workspace for solutions, tests, and notes while working through the [QuantEcon Lectures](https://quantecon.org/lectures/).
+This repository is my personal workspace for solutions, tests, and notes while working through the [QuantEcon Lectures](https://quantecon.org/lectures/) from Thomas J. Sargent and John Stachurski.
 
 It contains separate environments for **Julia** and **Python** versions of the lectures, as well as my own notes and exercises.
 
@@ -11,9 +11,9 @@ It contains separate environments for **Julia** and **Python** versions of the l
 ```
 quantecon_lectures/
 |----julia/
-|--------notebooks/ # (submodule) QuantEcon Julia lecture notebooks
+|----|----notebooks/ # (submodule) QuantEcon Julia lecture notebooks
 |----python/
-|--------notebooks/ # (submodule) QuantEcon Python lecture notebooks
+|----|----notebooks/ # (submodule) QuantEcon Python lecture notebooks
 |----README.md # this file
 
 ```
