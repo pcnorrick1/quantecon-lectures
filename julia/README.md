@@ -8,11 +8,13 @@ This folder contains my work through the [QuantEcon lectures in Julia](https://j
 
 ```
 julia/
-|----notebooks/ # (submodule) official QuantEcon Julia lecture notebooks
-|----lecture1/ # notes and exercises from lecture1
-|----lecture2/
-|----shared/ # utility code shared across lectures
-|----README.md # this file
+|--notebooks/ # (submodule) official QuantEcon Julia lecture notebooks
+|--lecture1/ # notes and exercises from lecture1
+   |--exercise1.jl # exercise 1 (if applicable)
+   |--notes.md
+|--lecture2/
+|--shared/ # utility code shared across lectures
+|--README.md # this file
 ```
 
 ---

@@ -10,11 +10,11 @@ It contains separate environments for **Julia** and **Python** versions of the l
 
 ```
 quantecon_lectures/
-|----julia/
-|----|----notebooks/ # (submodule) QuantEcon Julia lecture notebooks
-|----python/
-|----|----notebooks/ # (submodule) QuantEcon Python lecture notebooks
-|----README.md # this file
+|--julia/
+   |--notebooks/ # (submodule) QuantEcon Julia lecture notebooks
+|--python/
+   |--notebooks/ # (submodule) QuantEcon Python lecture notebooks
+|--README.md # this file
 
 ```
 
