@@ -48,5 +48,5 @@ git submodule update --remote --merge
 
 ## Notes
 
-- My work should stay in `exercises/` or `notes.md` - the official noebooks should not be modified.
-- If I want to experiment, I'll copy a notebook into `exercises/` and edit that version.
+- My work should stay in `exercises/` or `notes.md` - the official notebooks should not be modified.
+- If I want to experiment, I'll copy a notebook into the relevant `lectureN/` folder and edit that version.
