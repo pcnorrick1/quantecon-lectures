@@ -1,0 +1,3 @@
+[submodule "julia/notebooks"]
+	path = julia/notebooks
+	url = git@github.com:QuantEcon/lecture-julia.notebooks.git
