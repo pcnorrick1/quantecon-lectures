@@ -45,6 +45,13 @@ The official notebooks live in the `notebooks/` submodule. To update them:
 ```bash
 git submodule update --remote --merge
 ```
+And then commit the change:
+
+```bash
+git add julia/notebooks
+git commit -m "Update Julia notebooks submodule"
+git push origin main
+```
 
 ---
 
