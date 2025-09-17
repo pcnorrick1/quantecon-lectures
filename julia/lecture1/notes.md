@@ -73,3 +73,88 @@ The third and fastest way is the shortcut
 option + J
 option + O
 ```
+# Jupyter
+Jupyter can be started from any directory with
+```bash
+jupyter lab
+```
+For this I'm using my `quantecon` conda environment, which will also be used for the python lectures, though VS Code has built in Jupyter support via an extension which doesn't require conda for use with Julia.
+
+Note that if you update Julia (via `juliaup update`) you will need to rebuild your IJulia kernel:
+```bash
+conda activate quantecon # So using the right jupyter
+
+julia --project=.
+using Pkg
+Pkg.build("IJulia")
+```
+This regenerates the Jupyter kernel config to point at the **current Julia symlink** (`~/.julia/juliaup/bin/julia`)
+
+You can verify the kernel with
+```bash
+jupyter kernel speclist
+```
+after exiting the REPL
+
+You should se something like
+```bash
+julia-1.11  /Users/patrick/Library/Jupyter/kernels/julia-1.11
+python3     /Users/patrick/miniconda3/envs/quantecon/share/jupyter/kernels/python3
+```
+Relaunch the JupyterLab and select **Julia 1.11** as the kernel.
+
+## Modes ##
+Jupyter uses a modal editing system
+
+`Esc` takes you from Edit mode to Command mode
+
+`Enter` takes you from Command mode to Edit mode
+
+## Running Julia in Jupyter ##
+`Shift + Enter` runs the current cell
+
+## Help ##
+To get help with a Julia function like `repeat`, enter
+```julia
+? repeat
+```
+## Other Content ##
+You can enter LaTeX as well:
+
+```LaTeX
+$$ \exp(i \pi) = -1 $$
+```
+To run this cell:
+```bash
+Esc # Enter command mode
+m # Tell Jupyter that we're writing Markdown
+Shift + Enter # Run the cell block
+```
+And unicode:
+
+```julia
+\alpha
+
+using LinearAlgebra
+x \cdot y
+```
+Shell commands can be executed by prepending `;`
+
+```julia
+; ls
+```
+
+And for package operations prepend `]`
+```julia
+] st # gives the status of installed packages in the current environment
+```
+# Using Jupyter in VS Code ##
+You can create or open a `.ipynb` file in VS Code directly as long as you have the Jupyter and Julia extensions.
+
+You will need to select the `Julia` kernel. You can just use the UI or by keyboard:
+
+```bash
+Cmd + Shift + P # Open Command Palette
+Jupyter: Select Kernel
+```
+And then use the arrow keys to chose the Julia 1.11 (or 1.xx) kernel from the list

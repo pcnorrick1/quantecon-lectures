@@ -24,7 +24,7 @@ julia/
 1. **Install Julia** (via [Juliaup](https://github.com/JuliaLang/juliaup) is recommended).
 2. Ensure Julia is on your PATH (so you can type `julia` in a terminal).
 3. Install [VS Code](https://code.visualstudio.com/) (or your text editor of choice) and the Julia extension.
-
+4. I will be using a conda environment called `quantecon` for both the python lectures and the jupyter notebooks in the julia lectures
 ---
 
 ## Workflow
