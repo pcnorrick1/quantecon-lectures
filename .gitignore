@@ -19,6 +19,12 @@ __pychache__/
 *.jl.cov
 *.jl.mem
 
+# LaTeX
+*.aux
+*.log
+*.synctex.gz
+*.pdf
+
 # Data (project-level)
 julia/data/
 python/data/
