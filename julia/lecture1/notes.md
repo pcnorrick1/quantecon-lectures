@@ -148,7 +148,7 @@ And for package operations prepend `]`
 ```julia
 ] st # gives the status of installed packages in the current environment
 ```
-# Using Jupyter in VS Code ##
+## Using Jupyter in VS Code ##
 You can create or open a `.ipynb` file in VS Code directly as long as you have the Jupyter and Julia extensions.
 
 You will need to select the `Julia` kernel. You can just use the UI or by keyboard:
@@ -158,3 +158,123 @@ Cmd + Shift + P # Open Command Palette
 Jupyter: Select Kernel
 ```
 And then use the arrow keys to chose the Julia 1.11 (or 1.xx) kernel from the list
+
+# Julia in Neovim #
+I have set up `neovim` to integrate with `tmux` and `vim-slime` to provide an IDE-like environment. If you're curious you can look at my [dotfiles repo](https://github.com/pcnorrick1/dotfiles/tree/main/nvim)
+
+## Starting a REPL ##
+
+1) Launch a tmux session
+```bash
+tmux new -s test-session
+```
+Inside tmux:
+Split a narrow right column (this will hold the REPL)
+
+```
+ctrl-b |
+```
+(Optional): make left pane ~70% width:
+```css
+ctrl-b L (repeat a few times) # capital L resizes right; capital H resizes left
+```
+2) Create or cd into your project in the left pane and open nvim
+
+```bash
+cd ~/academia/projects/example-project
+
+nvim .
+```
+
+3) Create files in neovim:
+
+`example.jl`
+```julia
+using Statistics
+vals = [1,4,9,16]
+out = sqrt.(vals)
+println("jl ok: ", out, " | mean=", mean(out))
+```
+
+4) Start REPL
+
+Move to the right pane (`ctrl-l`) and create the appropriate REPL:
+
+```bash
+julia
+```
+
+5) Wire Neovim -> REPL with vim-slime
+
+Vim-slime is already set to target tmux in my config. First time only, tell slime which pane to send it to.
+
+In **Neovim**:
+
+```lua
+:SlimeConfig
+```
+Follow the prompts:
+ - **Socket name**: Usually press `Enter` (default).
+ - **tmux target**: e.g., `:2.1` (window 2, pane 1) or similar -- slime shows hints in the prompt.
+ (A quick way to see pane numbers: in any tmux pane run `tmux display -p `#S:#I.#P'.)
+
+To **send code**: select lines in Visual mode or place the cursor on a line and press `ctrl-c ctrl-c`
+
+You can send the whole file with:
+
+```
+ggVG (select all)
+ctrl-c ctrl-c
+```
+Alternatively I've set up some shortcuts:
+```lua
+<leader>ss -- sends current line to REPL
+<leader>sp -- sends selection to REPL
+<leader>sf -- sends file to REPL
+```
+Once a pane is pinned with `:SlimeConfig`, slime remembers it for that buffer. You can also `:SlimeConfig` again if you rearrange panes
+
+## Package Management ##
+Inside this REPL we can manage packages as usual:
+
+```julia
+] add IJulia
+```
+## Formatting ##
+I have my Language server managed automatically by Mason:
+ - Julia -> `julials`
+Neovim provides completion, hover help, and diagnostics through `nvim-cmp` and `lspconfig`
+
+I still need to set up proper debugging, linting, profiling, etc. in neovim
+
+## Jupyter in Neovim ##
+I'm still experimenting with how this works. For now here's what I've got
+
+You can still launch JupyterLab from any directory:
+```bash
+jupyter lab # this starts the same Jupyter server used by VS Code
+```
+You can view and run notebooks in the browser while editing their paired script files (`.jl`) in Neovim.
+
+One time install:
+```bash
+pipx install jupytext # makes it available globally
+```
+### Converting Betweeen Notebooks and Scripts ###
+Because jupytext is available globally we can pair any notebook with a script:
+```bash
+jupytext --set-formats ipynb,jl:percent mynotebook.ipynb
+```
+Now edits made in Neovim (the `.jl`) file automatically sync when you open or save the notebook in JupyterLab.
+
+You can edit `mynotebook.jl` in Neovim (cells are #%%), send cells to the REPL via vim-slime, and sync to `.ipynb` when you need a notebook with 
+```bash
+jupytext --sync mynotebook.ipynb
+```
+
+You can also convert one-off files:
+
+```bash
+jupytext --to notebook myscript.jl # .jl -> .ipynb
+jupytext --to jl mynotebook.ipynb # .ipynb -> .jl
+```
