@@ -54,6 +54,7 @@ Typical steps to work through a lecture:
 3. Make sure VS Code is using the correct interpreter (should be the conda environment (`quantecon`)): `Cmd+Shift+P` -> `Python: Select Interpreter`
 4. Run code either:
  - in a script with `python file.py` in the integrated terminal
+    * `which python` in the integrated terminal will point to the conda environment: `/opt/anaconda3/envs/quantecon/bin/python`
  - interactively in VS Code with `Shift + Enter`
  - directly in a notebook
 
